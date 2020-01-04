@@ -7,7 +7,7 @@ function Home() {
     const routeToHome = () => {
         console.log("Loading...");
         setTimeout(() => {
-            push("/");
+            push("/login");
         });
         // history.goBack()
     };

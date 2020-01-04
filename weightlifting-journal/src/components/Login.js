@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import Calendar from "./Calendar";
 
 const Login = props => {
@@ -45,7 +45,13 @@ const Login = props => {
                     name="password"
                     value={login.password}
                 />
-                <button type="submit">Login</button>
+
+                <Link to="/calendar">
+                    <button type="submit">Enter</button>
+                </Link>
+                <Route path="/calendar">
+                    <Calendar />
+                </Route>
             </form>
         </div>
     );

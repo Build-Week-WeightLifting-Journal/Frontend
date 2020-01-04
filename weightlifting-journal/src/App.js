@@ -1,5 +1,7 @@
 import React,{ useState } from 'react';
 import { Route, Link, Switch } from "react-router-dom";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 function App() {
   return (

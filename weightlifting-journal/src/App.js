@@ -1,11 +1,26 @@
 import React,{ useState } from 'react';
+import { Route, Link, Switch } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <h1>Weight Lifting Journal</h1>
-      <button>Sign Up</button>
-      <button>Login</button>
+
+      <nav>
+        <h1>Weight Lifting Journal</h1>
+        <div>
+          <Link to="/sign-up">Sign Up</Link>
+          <Link to="/login">Login</Link>
+        </div>
+      </nav>
+
+      <Switch>
+        <Route exact path="/sign-up">
+          
+        </Route>
+        <Route path="/login">
+          
+        </Route>
+      </Switch>
     </div>
   );
 }

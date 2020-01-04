@@ -1,8 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Calendar from "./Calendar";
+import React, { useState } from "react";
 
-function Signup() {
+const Signup = props => {
     return null;
 }
 

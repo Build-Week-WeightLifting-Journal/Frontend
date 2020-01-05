@@ -1,60 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
 import Calendar from "./Calendar";
+import { withFormik, Form, Field } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
 
-const Login = props => {
-
-    const [login, setLogin] = useState({
-        username: "",
-        password: ""
-      });
-
-    const handleChanges = e => {
-        setLogin({
-            ...login,
-            [e.target.name]: e.target.value
-        });
-        console.log(e.target.name);
-    };
-
-    const submitForm = e => {
-        e.preventDefault();
-        props.addNewLogin(login);
-        setLogin({ username: "", password: "" });
-    };
-
+const Login = ({ errors, touched, status }) => {
+    const [login, setLogin] = useState([]);
+    useEffect(() => {
+      console.log("status has changed", status);
+      status && setLogin(login => [...login, status]);
+    }, [status]);
     return (
         <div>
             <h2>Welcome Back!</h2>
-            <form onSubmit={submitForm} >
+            <Form>
                 <label htmlFor="username">username</label>
-                <input
+                <Field
                     id="username"
                     type="text"
                     placeholder="username"
-                    onChange={handleChanges}
                     name="username"
-                    value={login.username}
                 />
+                {touched.username && errors.username && <p 
+                className="errors">{errors.username}</p>}
                 <label htmlFor="password">password</label>
-                <input
+                <Field
                     id="password"
                     type="text"
                     placeholder="password"
-                    onChange={handleChanges}
                     name="password"
-                    value={login.password}
                 />
+                {touched.password && errors.password && <p 
+                className="errors">{errors.password}</p>}
 
-                <Link to="/calendar">
+                {/* <Link to="/calendar"> */}
                     <button type="submit">Enter</button>
-                </Link>
+                {/* </Link> */}
                 <Route path="/calendar">
                     <Calendar />
                 </Route>
-            </form>
+            </Form>
+
+            {login.map(loginInfo => (
+                <ul key={loginInfo.id}>
+                    <li>username: {loginInfo.username}</li>
+                    <li>password: {loginInfo.password}</li>
+                </ul>
+            ))}
         </div>
     );
 }
 
-export default Login;
+const FormikLogin = withFormik({
+    mapPropsToValues({ username, password }){
+        return {
+            username: username || "",
+            password: ""
+        };
+    },
+    validationSchema: Yup.object().shape({
+        username: Yup.string().required(),
+        password: Yup.string().required()
+    }),
+    handleSubmit(values, {setStatus}){
+        console.log("submitting", values);
+        axios.post('https://reqres.in/api/users', values)
+        .then(res => {
+            console.log('success', res)
+            setStatus(res.data)
+        })
+        .catch(err => console.log(err.response));
+    }
+})(Login);
+export default FormikLogin;

@@ -12,7 +12,7 @@ import {
   isSameDay,
   addDays
 } from "date-fns";
-import "../calendar.css";
+import "./calendar.css";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
-import Calendar from "./Calendar";
+import Calendar from "./dashboard/Calendar";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -34,9 +34,11 @@ const Login = ({ errors, touched, status }) => {
                 {touched.password && errors.password && <p 
                 className="errors">{errors.password}</p>}
 
-                <Link to="/calendar">
-                    <button type="submit">Enter</button>
-                </Link>
+                
+                <button type="submit">
+                    <Link to="/calendar">Enter</Link>
+                </button>
+                
                 <Route path="/calendar">
                     <Calendar />
                 </Route>
@@ -60,7 +62,7 @@ const FormikLogin = withFormik({
         };
     },
     validationSchema: Yup.object().shape({
-        email: Yup.string().required(),
+        email: Yup.string().email('Invalid email address').required(),
         password: Yup.string().required()
     }),
     handleSubmit(values, {setStatus}){

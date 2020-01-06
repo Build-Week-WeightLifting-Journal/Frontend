@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
-import Calendar from "./Calendar";
+import Calendar from "./dashboard/Calendar";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -60,8 +60,8 @@ const FormikSignup = withFormik({
         };
     },
     validationSchema: Yup.object().shape({
-        email: Yup.string().required(),
-        password: Yup.string().required()
+        email: Yup.string().email('Invalid email address').required(),
+        password: Yup.string().min(5, 'Must be at leat 5 characters long').required()
     }),
     handleSubmit(values, {setStatus}){
         console.log("submitting", values);

@@ -34,9 +34,9 @@ const Login = ({ errors, touched, status }) => {
                 {touched.password && errors.password && <p 
                 className="errors">{errors.password}</p>}
 
-                {/* <Link to="/calendar"> */}
+                <Link to="/calendar">
                     <button type="submit">Enter</button>
-                {/* </Link> */}
+                </Link>
                 <Route path="/calendar">
                     <Calendar />
                 </Route>

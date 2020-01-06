@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, useHistory } from "react-router-dom";
 import Dashboard from "./dashboard/Dashboard";
 import Signup from "./Signup";
 import { withFormik, Form, Field } from "formik";
@@ -8,10 +8,21 @@ import axios from "axios";
 
 const Login = ({ errors, touched, status }) => {
     const [login, setLogin] = useState([]);
+    const history = useHistory();
+
     useEffect(() => {
       console.log("status has changed", status);
       status && setLogin(login => [...login, status]);
     }, [status]);
+
+    const routeToDashboard = (email, password) => {
+        console.log('email', email, 'password', password);
+        if(!email || !password){
+            console.log("error");
+        } else{
+        history.push("/dashboard");
+        }
+    };
     return (
         <div>
             <Link to="/sign-up">Sign Up</Link>
@@ -40,13 +51,9 @@ const Login = ({ errors, touched, status }) => {
                 className="errors">{errors.password}</p>}
 
                 
-                <button type="submit">enter
-                    {/* <Link to="/dashboard">Enter</Link> */}
+                <button type="submit" onClick={routeToDashboard} >Enter
                 </button>
-                
-                <Route path="/dashboard">
-                    <Dashboard />
-                </Route>
+
             </Form>
 
             {/* {login.map(loginInfo => (
@@ -76,6 +83,7 @@ const FormikLogin = withFormik({
         .then(res => {
             console.log('success', res)
             setStatus(res.data)
+           // history.push('/dashboard');
         })
         .catch(err => console.log(err.response));
     }

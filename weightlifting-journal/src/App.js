@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Route, Link, Switch } from "react-router-dom";
+import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Calendar from "./components/Calendar";
@@ -19,8 +20,15 @@ function App() {
       </nav>
 
       <Switch>
-        <Route exact path="/sign-up"></Route>
-        <Route path="/login"></Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/sign-up">
+          <Signup />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
         <Route path="/calendar" component={Calendar} />
       </Switch>
     </div>

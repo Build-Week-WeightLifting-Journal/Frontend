@@ -8,8 +8,8 @@ import {
   startOfWeek,
   endOfWeek,
   isSameMonth,
+  // parse,
   isSameDay,
-  parse,
   addDays
 } from "date-fns";
 import "../calendar.css";
@@ -89,6 +89,10 @@ const Calendar = () => {
     const dateFormat = "d";
     const rows = [];
 
+    const onDateClick = day => {
+      setSelectedDate(day);
+    };
+
     let days = [];
     let day = startDate;
     let formattedDate = "";
@@ -108,7 +112,11 @@ const Calendar = () => {
                 : ""
             }`}
             key={day}
-            // onClick={() => onDateClick(parse(cloneDay))}
+            onClick={e => {
+              e.preventDefault();
+              onDateClick(e);
+              console.log(selectedDate);
+            }}
           >
             <span className="number">{formattedDate}</span>
             <span className="bg">{formattedDate}</span>

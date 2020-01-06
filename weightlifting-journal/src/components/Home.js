@@ -21,8 +21,8 @@ function Home() {
     };
     return (
       <div>
-        <button onClick={routeToSignup}>Signup #2</button>
-        <button onClick={routeToLogin}>Login #2</button>
+        <button onClick={routeToSignup}>Sign Up</button>
+        <button onClick={routeToLogin}>Login</button>
         <p>An Image will go here</p>
         <button onClick={routeToHome}>Login!</button>
       </div>

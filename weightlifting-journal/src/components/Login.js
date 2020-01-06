@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
-import Calendar from "./dashboard/Calendar";
+import Dashboard from "./dashboard/Dashboard";
+import Signup from "./Signup";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -13,6 +14,10 @@ const Login = ({ errors, touched, status }) => {
     }, [status]);
     return (
         <div>
+            <Link to="/sign-up">Sign Up</Link>
+            <Route path="/sign-up">
+                <Login />
+            </Route>
             <h2>Welcome Back!</h2>
             <Form>
                 <label htmlFor="email">email</label>
@@ -35,12 +40,12 @@ const Login = ({ errors, touched, status }) => {
                 className="errors">{errors.password}</p>}
 
                 
-                <button type="submit">
-                    <Link to="/calendar">Enter</Link>
+                <button type="submit">enter
+                    {/* <Link to="/dashboard">Enter</Link> */}
                 </button>
                 
-                <Route path="/calendar">
-                    <Calendar />
+                <Route path="/dashboard">
+                    <Dashboard />
                 </Route>
             </Form>
 

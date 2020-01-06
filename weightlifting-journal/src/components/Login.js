@@ -15,15 +15,15 @@ const Login = ({ errors, touched, status }) => {
         <div>
             <h2>Welcome Back!</h2>
             <Form>
-                <label htmlFor="username">username</label>
+                <label htmlFor="email">email</label>
                 <Field
-                    id="username"
+                    id="email"
                     type="text"
-                    placeholder="username"
-                    name="username"
+                    placeholder="email"
+                    name="email"
                 />
-                {touched.username && errors.username && <p 
-                className="errors">{errors.username}</p>}
+                {touched.email && errors.email && <p 
+                className="errors">{errors.email}</p>}
                 <label htmlFor="password">password</label>
                 <Field
                     id="password"
@@ -42,25 +42,25 @@ const Login = ({ errors, touched, status }) => {
                 </Route>
             </Form>
 
-            {login.map(loginInfo => (
+            {/* {login.map(loginInfo => (
                 <ul key={loginInfo.id}>
-                    <li>username: {loginInfo.username}</li>
+                    <li>email: {loginInfo.email}</li>
                     <li>password: {loginInfo.password}</li>
                 </ul>
-            ))}
+            ))} */}
         </div>
     );
 }
 
 const FormikLogin = withFormik({
-    mapPropsToValues({ username, password }){
+    mapPropsToValues({ email, password }){
         return {
-            username: username || "",
+            email: email || "",
             password: ""
         };
     },
     validationSchema: Yup.object().shape({
-        username: Yup.string().required(),
+        email: Yup.string().required(),
         password: Yup.string().required()
     }),
     handleSubmit(values, {setStatus}){

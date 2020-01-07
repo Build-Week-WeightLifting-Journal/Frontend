@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import Dashboard from "./components/dashboard/Dashboard";
-import { ProtectedRoute } from "./components/protected.route";
+import { PrivateRoute } from "./components/private.route";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
@@ -29,7 +29,7 @@ function App() {
         <Route path="/login">
           <Login />
         </Route>
-        <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
 
         <Route>
           <WorkoutList />

@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import auth from "./auth";
 
-export const ProtectedRoute = ({
+export const PrivateRoute = ({
   component: Component,
   ...rest
 }) => {
@@ -10,7 +10,7 @@ export const ProtectedRoute = ({
     <Route
       {...rest}
       render={props => {
-        if (auth.isAuthenticated()) {
+        if (localStorage.getItem('token')) {
           return <Component {...props} />;
         } else {
           return (

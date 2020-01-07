@@ -1,19 +1,47 @@
-import React, { useState, useEffect } from "react";
-import { Route, Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { Route, Link } from "react-router-dom";
 import auth from "./auth";
-import { withFormik, Form, Field } from "formik";
-import * as Yup from "yup";
 import axios from "axios";
 import { LoginSignup, WelcomeTitle, MainContent } from "./Styles.js";
+import axiosWithAuth  from './auth';
 
-const Login = ({ errors, touched, status }) => {
-    const [login, setLogin] = useState([]);
-    const history = useHistory();
+function Login(props)  {
+    console.log(props)
+    const [creds, setCreds] = useState({ username: '', password: '', isLoggedIn: false });
+    // const [loginStatus, setLoginStatus] = useState('');
 
-    useEffect(() => {
-      console.log("status has changed", status);
-      status && setLogin(login => [...login, status]);
-    }, [status]);
+   
+    const handleChange = e => {
+        setCreds({ ...creds, [e.target.name]: e.target.value });
+    }
+
+    function login(e) {
+        e.preventDefault();
+        axiosWithAuth()
+            .post(`https://cors-anywhere.herokuapp.com/https://weightlifting-journal15.herokuapp.com/api/auth/login`, creds)
+            .then(res => {
+                console.log(`login response`, res);
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('id', res.data.id);
+                // localStorage.setItem('userid', res.data.user.id) //may be called something different ***
+                // setLoginStatus('Success');
+                setCreds({
+                    username: '',
+                    password: '', 
+                    isLoggedIn: true
+                })
+                props.history.push('/dashboard')
+            })
+            .catch(err => {
+                console.log(err);
+                // setLoginStatus(`${err}`);
+                setCreds({
+                    username: '',
+                    password: '',
+                    isLoggedIn: false
+                })
+            });
+    }
 
     return (
         <div>
@@ -25,59 +53,59 @@ const Login = ({ errors, touched, status }) => {
             </Route>
             <br></br>
             <MainContent>
-                <WelcomeTitle>Welcome Back!</WelcomeTitle>
-                <Form>
-                    <label htmlFor="email">email</label>
-                    <Field
-                        id="email"
+                <WelcomeTitle>{`Welcome back`}</WelcomeTitle>
+                <form onSubmit={login}>
+                    <label htmlFor="username">username</label>
+                    <input
+                        id="username"
                         type="text"
-                        placeholder="email"
-                        name="email"
+                        placeholder="username"
+                        name="username"
+                        onChange={handleChange}
+                        value= {creds.username}
                     />
-                    {touched.email && errors.email && <p 
-                    className="errors">{errors.email}</p>}
+                    {/* {touched.username && errors.username && <p 
+                    className="errors">{errors.username}</p>} */}
                     <label htmlFor="password">password</label>
-                    <Field
+                    <input
                         id="password"
                         type="text"
                         placeholder="password"
                         name="password"
-                    />
-                    {touched.password && errors.password && <p 
-                    className="errors">{errors.password}</p>}
-                    
-                    <button type="submit" onClick={() => {
-                        auth.login(() => {
-                            history.push("/dashboard");
-                        });
-                    }} >Enter
-                    </button>
+                        onChange={handleChange}
+                        value= {creds.password}
 
-                </Form>
+                    />
+                    {/* {touched.password && errors.password && <p 
+                    className="errors">{errors.password}</p>} */}
+                    
+                    <button type="submit" onSubmit={login}>Enter</button>
+
+                </form>
             </MainContent>
         </div>
     );
 }
 
-const FormikLogin = withFormik({
-    mapPropsToValues({ email, password }){
-        return {
-            email: email || "",
-            password: ""
-        };
-    },
-    validationSchema: Yup.object().shape({
-        email: Yup.string().email('Invalid email address').required(),
-        password: Yup.string().required()
-    }),
-    handleSubmit(values, {setStatus}){
-        console.log("submitting", values);
-        axios.post('https://reqres.in/api/users', values)
-        .then(res => {
-            console.log('success', res)
-            setStatus(res.data)
-        })
-        .catch(err => console.log(err.response));
-    }
-})(Login);
-export default FormikLogin;
+// const FormikLogin = withFormik({
+//     mapPropsToValues({ username, password }){
+//         return {
+//             username: username || " ",
+//             password: " "
+//         };
+//     },
+    // validationSchema: Yup.object().shape({
+    //     username: Yup.string().username('Invalid username address').required(),
+    //     password: Yup.string().required()
+    // }),
+    // handleSubmit(values, {setStatus}){
+    //     console.log("submitting", values);
+    //     axios.post('https://reqres.in/api/users', values)
+    //     .then(res => {
+    //         console.log('success', res)
+    //         setStatus(res.data)
+    //     })
+    //     .catch(err => console.log(err.response));
+    // }
+
+export default Login

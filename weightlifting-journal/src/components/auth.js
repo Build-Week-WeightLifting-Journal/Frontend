@@ -1,25 +1,15 @@
-class Auth {
-    constructor() {
-      this.authenticated = false;
-    }
-  
-    login(cb) {
-      this.authenticated = true;
-      if(this.authenticated === false){
-        alert('Email and/or password are invalid');
+
+import axios from 'axios';
+
+const axiosWithAuth = () => {
+  const token = localStorage.getItem('token');
+  console.log('axiosWithAuth Running!')
+
+    return axios.create({
+      headers: {
+        authorization: token
       }
-      cb();
-    }
-  
-    logout(cb) {
-      this.authenticated = false;
-      cb();
-    }
-  
-    isAuthenticated() {
-      return this.authenticated;
-    }
-  }
-  
-  export default new Auth();
+    });
+  };
+  export default axiosWithAuth;
   

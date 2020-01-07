@@ -8,7 +8,6 @@ function Home() {
     const routeToHome = () => {
         console.log("Loading...");
         push("/login");
-        // history.goBack()
     };
 
     const routeToSignup = () => {

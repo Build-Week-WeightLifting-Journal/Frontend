@@ -36,7 +36,7 @@ const Signup = ({ errors, touched, status }) => {
                     placeholder="password"
                     name="password"
                 />
-                {touched.password && errors.password && <p 
+                {touched.password && errors.password &&<p 
                 className="errors">{errors.password}</p>}
 
                 <button type="submit">enter

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Link, useHistory } from "react-router-dom";
-import Dashboard from "./dashboard/Dashboard";
-import Signup from "./Signup";
+import auth from "./auth";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -15,14 +14,6 @@ const Login = ({ errors, touched, status }) => {
       status && setLogin(login => [...login, status]);
     }, [status]);
 
-    const routeToDashboard = (email, password) => {
-        console.log('email', email, 'password', password);
-        if(!email || !password){
-            console.log("error");
-        } else{
-        history.push("/dashboard");
-        }
-    };
     return (
         <div>
             <Link to="/sign-up">Sign Up</Link>
@@ -49,19 +40,15 @@ const Login = ({ errors, touched, status }) => {
                 />
                 {touched.password && errors.password && <p 
                 className="errors">{errors.password}</p>}
-
                 
-                <button type="submit" onClick={routeToDashboard} >Enter
+                <button type="submit" onClick={() => {
+                    auth.login(() => {
+                        history.push("/dashboard");
+                    });
+                }} >Enter
                 </button>
 
             </Form>
-
-            {/* {login.map(loginInfo => (
-                <ul key={loginInfo.id}>
-                    <li>email: {loginInfo.email}</li>
-                    <li>password: {loginInfo.password}</li>
-                </ul>
-            ))} */}
         </div>
     );
 }
@@ -83,7 +70,6 @@ const FormikLogin = withFormik({
         .then(res => {
             console.log('success', res)
             setStatus(res.data)
-           // history.push('/dashboard');
         })
         .catch(err => console.log(err.response));
     }

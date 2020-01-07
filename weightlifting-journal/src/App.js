@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, Link, Switch } from "react-router-dom";
+import Dashboard from "./components/dashboard/Dashboard";
+import { ProtectedRoute } from "./components/protected.route";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import "./App.css"
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
         <Route path="/login">
           <Login />
         </Route>
+        <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+        
+        <Route path="*" component={() => "404 NOT FOUND"} />
       </Switch>
     </div>
   );

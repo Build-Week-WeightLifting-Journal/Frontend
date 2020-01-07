@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import "./App.css"
-import styled from "styled-components";
+import WorkoutList from "./components/dashboard/workout-list/WorkoutList";
 
 function App() {
   return (
@@ -31,6 +31,9 @@ function App() {
         </Route>
         <ProtectedRoute exact path="/dashboard" component={Dashboard} />
 
+        <Route>
+          <WorkoutList />
+        </Route>
         <Route path="*" component={() => "404 NOT FOUND"} />
       </Switch>
     </div>

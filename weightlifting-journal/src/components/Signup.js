@@ -24,8 +24,8 @@ const Signup = ({ errors, touched, status }) => {
                 <Login />
             </Route>
             <br></br>
-            <WelcomeTitle>Become A Member!</WelcomeTitle>
             <MainContent>
+            <WelcomeTitle>Become A Member!</WelcomeTitle>
                 <Form>
                     <label htmlFor="email">email</label>
                     <Field

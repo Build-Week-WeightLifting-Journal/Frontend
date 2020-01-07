@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import "./App.css"
+import styled from "styled-components";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/sign-up">
+        <Route className="SignUpBtn" path="/sign-up">
           <Signup />
         </Route>
         <Route path="/login">

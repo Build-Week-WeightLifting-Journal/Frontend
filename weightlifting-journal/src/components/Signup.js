@@ -5,6 +5,7 @@ import Login from "./Login";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { LoginSignup, WelcomeTitle, MainContent } from "./Styles.js";
 
 const Signup = ({ errors, touched, status }) => {
     const [signup, setSignup] = useState([]);
@@ -16,38 +17,43 @@ const Signup = ({ errors, touched, status }) => {
     }, [status]);
     return (
         <div>
-            <Link to="/login">Login</Link>
+            <Link to="/login">
+                <LoginSignup>Login</LoginSignup>
+            </Link>
             <Route path="/login">
                 <Login />
             </Route>
-            <h2>Become A Member!</h2>
-            <Form>
-                <label htmlFor="email">email</label>
-                <Field
-                    id="email"
-                    type="text"
-                    placeholder="email"
-                    name="email"
-                />
-                {touched.email && errors.email && <p 
-                className="errors">{errors.email}</p>}
-                <label htmlFor="password">password</label>
-                <Field
-                    id="password"
-                    type="text"
-                    placeholder="password"
-                    name="password"
-                />
-                {touched.password && errors.password &&<p 
-                className="errors">{errors.password}</p>}
+            <br></br>
+            <WelcomeTitle>Become A Member!</WelcomeTitle>
+            <MainContent>
+                <Form>
+                    <label htmlFor="email">email</label>
+                    <Field
+                        id="email"
+                        type="text"
+                        placeholder="email"
+                        name="email"
+                    />
+                    {touched.email && errors.email && <p 
+                    className="errors">{errors.email}</p>}
+                    <label htmlFor="password">password</label>
+                    <Field
+                        id="password"
+                        type="text"
+                        placeholder="password"
+                        name="password"
+                    />
+                    {touched.password && errors.password &&<p 
+                    className="errors">{errors.password}</p>}
 
-                <button type="submit" onClick={() => {
-                    auth.login(() => {
-                        history.push("/dashboard");
-                    });
-                }} >Enter
-                </button>
-            </Form>
+                    <button type="submit" onClick={() => {
+                        auth.login(() => {
+                            history.push("/dashboard");
+                        });
+                    }} >Enter
+                    </button>
+                </Form>
+            </MainContent>
         </div>
     );
 }

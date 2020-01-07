@@ -4,7 +4,7 @@ class Auth {
     }
   
     login(cb) {
-      this.authenticated = false;
+      this.authenticated = true;
       if(this.authenticated === false){
         alert('Email and/or password are invalid');
       }

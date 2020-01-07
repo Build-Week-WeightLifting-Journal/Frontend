@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <nav>
         <div>
-          <Link to="/">
+          <Link className="Journal-title" to="/">
             <h1>Weight Lifting Journal</h1>
           </Link>
         </div>
@@ -29,7 +29,7 @@ function App() {
           <Login />
         </Route>
         <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-        
+
         <Route path="*" component={() => "404 NOT FOUND"} />
       </Switch>
     </div>

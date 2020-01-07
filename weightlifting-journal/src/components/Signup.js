@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Route, Link } from "react-router-dom";
-import Dashboard from "./dashboard/Dashboard";
+import { Route, Link, useHistory } from "react-router-dom";
+import auth from "./auth";
 import Login from "./Login";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -8,6 +8,8 @@ import axios from "axios";
 
 const Signup = ({ errors, touched, status }) => {
     const [signup, setSignup] = useState([]);
+    const history = useHistory();
+
     useEffect(() => {
       console.log("status has changed", status);
       status && setSignup(signup => [...signup, status]);
@@ -39,21 +41,13 @@ const Signup = ({ errors, touched, status }) => {
                 {touched.password && errors.password &&<p 
                 className="errors">{errors.password}</p>}
 
-                <button type="submit">enter
-                    {/* <Link to="/dashboard">Enter</Link> */}
+                <button type="submit" onClick={() => {
+                    auth.login(() => {
+                        history.push("/dashboard");
+                    });
+                }} >Enter
                 </button>
-                
-                <Route path="/dashboard">
-                    <Dashboard />
-                </Route>
             </Form>
-
-            {/* {signup.map(signupInfo => (
-                <ul key={signupInfo.id}>
-                    <li>email: {signupInfo.email}</li>
-                    <li>password: {signupInfo.password}</li>
-                </ul>
-            ))} */}
         </div>
     );
 }
@@ -69,6 +63,9 @@ const FormikSignup = withFormik({
         email: Yup.string().email('Invalid email address').required(),
         password: Yup.string().min(5, 'Must be at leat 5 characters long').required()
     }),
+    onSubmit: values => {
+        alert(JSON.stringify(values, null, 2));
+      },
     handleSubmit(values, {setStatus}){
         console.log("submitting", values);
         axios.post('https://reqres.in/api/users', values)

@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-
+import "./Home.css"
 
 function Home() {
     const { push } = useHistory();
@@ -19,7 +19,7 @@ function Home() {
         push("/login");
     };
     return (
-      <div>
+      <div className="Home">
         <button onClick={routeToSignup}>Sign Up</button>
         <button onClick={routeToLogin}>Login</button>
         <p>An Image will go here</p>

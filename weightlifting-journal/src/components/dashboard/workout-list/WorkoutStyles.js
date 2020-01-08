@@ -7,13 +7,13 @@ export const WorkoutListDiv = styled.div`
 `;
 
 export const WorkoutInfoDiv = styled.div`
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px;
+    margin-bottom: 10px;
 `;
 
 export const WorkoutDiv = styled.div`
@@ -26,22 +26,31 @@ export const WorkoutDiv = styled.div`
     font-size: 12px;
     margin-bottom: 6px;
     border-radius: 3px;
-    font-size: 1.5rem;
+    font-size: 1rem;
+    margin-bottom: 10px;
+
 `;
 
 export const ButtonDiv = styled.div`
-    border: none;
-    margin: 0;
-    text-decoration: none;
     cursor: pointer;
     width: 48%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
 `;
 
-export const InputDiv = styled.div`
-    box-sizing: border-box;
-    border: 0;
-    border-radius: 4px;
-    box-shadow: none;
-    padding: 1rem;
-    height: 2.25em;
+export const InputDiv = styled.input`
+    color: #03DAC5;
+    width: 100%;
+`;
+
+export const ListButton = styled.button`
+    padding: 1px 10px;
+    margin: 0 10px;
+    background-color: #03DAC5;
+    color: white;
+    border: 1px solid #03DAC5;
+    background-color: 250ms;
+    border-radius: 5px;
+    font-size: 1.2rem;
 `;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LoginSignup= styled.div`
   color: black;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 0.75rem;
   display: inline-block;
 `;

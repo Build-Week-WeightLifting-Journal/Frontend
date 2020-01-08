@@ -1,13 +1,13 @@
 import React, { useState} from 'react';
-import { WorkoutInfoDiv, WorkoutListDiv, WorkoutDiv, ButtonDiv} from "./WorkoutStyles";
+import { WorkoutInfoDiv, WorkoutListDiv, WorkoutDiv, ButtonDiv, ListButton, InputDiv} from "./WorkoutStyles";
 
 const Workout = ({workout, index, completeWorkout, removeWorkout }) => {
   return(
     <WorkoutInfoDiv style={{textDecoration: workout.isCompleted ? 'line-through' : ''}}>
         {workout.text}
       <ButtonDiv>
-        <button onClick={() => completeWorkout(index)}>Complete</button>
-        <button onClick={() => removeWorkout(index)}>x</button>
+        <ListButton onClick={() => completeWorkout(index)}>Complete</ListButton>
+        <ListButton onClick={() => removeWorkout(index)}>x</ListButton>
       </ButtonDiv>
     </WorkoutInfoDiv>
   );
@@ -25,7 +25,7 @@ function WorkoutForm({ addWorkout }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <InputDiv
         type="text"
         className="input"
         value={value}

@@ -40,17 +40,15 @@ export const ButtonDiv = styled.div`
 `;
 
 export const InputDiv = styled.input`
-    color: #03DAC5;
     width: 100%;
 `;
 
 export const ListButton = styled.button`
     padding: 1px 10px;
     margin: 0 10px;
-    background-color: #03DAC5;
+    background-color: #6200EE;
     color: white;
-    border: 1px solid #03DAC5;
-    background-color: 250ms;
+    border: 1px solid #6200EE;
     border-radius: 5px;
     font-size: 1.2rem;
 `;

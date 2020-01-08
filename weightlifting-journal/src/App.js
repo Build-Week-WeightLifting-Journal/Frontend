@@ -8,6 +8,9 @@ import Signup from "./components/Signup";
 import "./App.css"
 import WorkoutList from "./components/dashboard/workout-list/WorkoutList";
 import ExerciseList from "./components/dashboard/workout-list/exercise-list/ExerciseList";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrash, faCheck, faEdit } from '@fortawesome/free-solid-svg-icons';
+library.add(faTrash, faCheck, faEdit);
 
 function App() {
   return (

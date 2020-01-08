@@ -3,8 +3,10 @@ import history from "./history.js";
 import { Router, Route } from "react-router-dom";
 import { WorkoutInfoDiv, WorkoutListDiv, WorkoutDiv, ButtonDiv, ListButton, InputDiv} from "./WorkoutStyles";
 import ExerciseList from "./exercise-list/ExerciseList";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Workout = ({workout, index, completeWorkout, removeWorkout }) => {
+
+const Workout = ({workout, index, completeWorkout, removeWorkout, editWorkout }) => {
  
   return(
     <>
@@ -15,8 +17,15 @@ const Workout = ({workout, index, completeWorkout, removeWorkout }) => {
       <WorkoutInfoDiv style={{textDecoration: workout.isCompleted ? 'line-through' : ''}}>
         <button onClick={() => history.push('/exercise-list')} >{workout.text}</button>
         <ButtonDiv>
-          <ListButton onClick={() => completeWorkout(index)}>Complete</ListButton>
-          <ListButton onClick={() => removeWorkout(index)}>x</ListButton>
+          <ListButton onClick={() => editWorkout(index)} icon="edit">
+            <FontAwesomeIcon icon="edit"/>
+          </ListButton>
+          <ListButton onClick={() => completeWorkout(index)} icon="trash">
+            <FontAwesomeIcon icon="check"/>
+          </ListButton>
+          <ListButton onClick={() => removeWorkout(index)}>
+            <FontAwesomeIcon icon="trash"/>
+          </ListButton>
         </ButtonDiv>
       </WorkoutInfoDiv>
 
@@ -79,12 +88,26 @@ const WorkoutList = () => {
       setWorkouts(newWorkouts);
     };
 
+    const editWorkout = (text, key) => {
+      const newWorkouts = [...workouts];
+      newWorkouts.map(item=>{      
+        if(item.key===key){
+          console.log(item.key +""+key)
+          item.text= text;
+        }
+      })
+      this.setState({
+        newWorkouts: newWorkouts
+      }) 
+      setWorkouts(newWorkouts);
+    };
+
 
     return(
       <WorkoutListDiv>
         <WorkoutDiv>
             {workouts.map((workout, index) => (
-              <Workout key={index} index={index} workout={workout} completeWorkout={completeWorkout} removeWorkout={removeWorkout}/>
+              <Workout key={index} index={index} workout={workout} completeWorkout={completeWorkout} removeWorkout={removeWorkout} editWorkout={editWorkout}/>
             ))}
             <WorkoutForm addWorkout={addWorkout} />
         </WorkoutDiv>

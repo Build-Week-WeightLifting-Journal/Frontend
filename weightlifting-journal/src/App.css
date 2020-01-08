@@ -7,7 +7,6 @@
   }
 .Journal-title {
   text-decoration: none;
-  margin: 0;
   text-align: center;
   width: 100vw;
   display: flex;
@@ -20,16 +19,11 @@ h1 {
   margin-bottom: 20px;
 
 }
-/* .SignUpBtn{
-  display: flex;
-  flex-wrap: wrap;
-  margin: 10px;
-} */
+
 
 form {
   max-width: 500px;
   width: 100%;
-  margin: 0 auto;
 }
 
 label,
@@ -54,14 +48,7 @@ input.error {
   border-color: red;
 }
 
-.input-feedback {
-  color: rgb(235, 54, 54);
-  margin-top: -15px;
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-button {
+.button {
   padding: 5px 10px;
   background-color: #6200EE;
   color: white;
@@ -69,7 +56,6 @@ button {
   background-color: 250ms;
   border-radius: 5px;
   font-size: 1.2rem;
-  margin: 10px;
 }
 
 button:hover {

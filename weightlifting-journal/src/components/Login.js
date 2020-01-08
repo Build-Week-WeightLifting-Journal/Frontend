@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Route, Link } from "react-router-dom";
 import auth from "./auth";
 import axios from "axios";
-import { LoginSignup, WelcomeTitle, MainContent } from "./Styles.js";
+import { LoginSignup, WelcomeTitle, MainContent, WholeDiv } from "./Styles.js";
 import axiosWithAuth  from './auth';
 
 function Login(props)  {
@@ -44,7 +44,7 @@ function Login(props)  {
     }
 
     return (
-        <div>
+        <WholeDiv>
             <Link style={{ textDecoration: "none" }} to="/sign-up">
                 <LoginSignup>Sign Up</LoginSignup>
             </Link>
@@ -79,11 +79,11 @@ function Login(props)  {
                     {/* {touched.password && errors.password && <p 
                     className="errors">{errors.password}</p>} */}
                     
-                    <button type="submit" onSubmit={login}>Enter</button>
+                    <button className="button" type="submit" onSubmit={login}>Enter</button>
 
                 </form>
             </MainContent>
-        </div>
+        </WholeDiv>
     );
 }
 

@@ -18,3 +18,15 @@ export const MainContent = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+export  const NavDiv = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  margin: 0;
+`;
+
+export const WholeDiv = styled.div`
+  padding: 15px;
+`;

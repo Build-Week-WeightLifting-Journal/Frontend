@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { MainContent, NavDiv, LoginSignup } from "./Styles.js";
 
 function Home() {
     const { push } = useHistory();
@@ -18,12 +19,17 @@ function Home() {
         push("/login");
     };
     return (
-      <div className="Home">
-        <button onClick={routeToSignup}>Sign Up</button>
-        <button onClick={routeToLogin}>Login</button>
-        <p>An Image will go here</p>
-        <button onClick={routeToHome}>Login!</button>
-      </div>
+      <>
+        <NavDiv>
+          <LoginSignup onClick={routeToSignup}>Sign Up</LoginSignup>
+          <LoginSignup onClick={routeToLogin}>Login</LoginSignup>
+        </NavDiv>
+        
+        <MainContent>
+          <p>An Image will go here</p>
+          <button className="button" onClick={routeToHome}>Login!</button>
+        </MainContent>
+      </>
     );
   }
   

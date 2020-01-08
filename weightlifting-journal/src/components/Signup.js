@@ -5,7 +5,7 @@ import Login from "./Login";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { LoginSignup, WelcomeTitle, MainContent } from "./Styles.js";
+import { LoginSignup, WelcomeTitle, MainContent, WholeDiv } from "./Styles.js";
 
 const Signup = ({ errors, touched, status }) => {
     const [signup, setSignup] = useState([]);
@@ -16,7 +16,7 @@ const Signup = ({ errors, touched, status }) => {
       status && setSignup(signup => [...signup, status]);
     }, [status]);
     return (
-        <div>
+        <WholeDiv>
             <Link to="/login">
                 <LoginSignup>Login</LoginSignup>
             </Link>
@@ -46,7 +46,7 @@ const Signup = ({ errors, touched, status }) => {
                     {touched.password && errors.password &&<p 
                     className="errors">{errors.password}</p>}
 
-                    <button type="submit" onClick={() => {
+                    <button className="button" type="submit" onClick={() => {
                         auth.login(() => {
                             history.push("/dashboard");
                         });
@@ -54,7 +54,7 @@ const Signup = ({ errors, touched, status }) => {
                     </button>
                 </Form>
             </MainContent>
-        </div>
+        </WholeDiv>
     );
 }
 

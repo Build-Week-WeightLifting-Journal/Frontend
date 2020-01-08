@@ -12,11 +12,9 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <div>
           <Link className="Journal-title" to="/">
             <h1>Weight Lifting Journal</h1>
           </Link>
-        </div>
       </nav>
 
       <Switch>

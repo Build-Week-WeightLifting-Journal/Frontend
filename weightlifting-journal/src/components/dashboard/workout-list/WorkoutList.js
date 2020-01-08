@@ -1,15 +1,26 @@
 import React, { useState} from 'react';
+import history from "./history.js";
+import { Router, Route } from "react-router-dom";
 import { WorkoutInfoDiv, WorkoutListDiv, WorkoutDiv, ButtonDiv, ListButton, InputDiv} from "./WorkoutStyles";
+import ExerciseList from "./exercise-list/ExerciseList";
 
 const Workout = ({workout, index, completeWorkout, removeWorkout }) => {
+ 
   return(
-    <WorkoutInfoDiv style={{textDecoration: workout.isCompleted ? 'line-through' : ''}}>
-        {workout.text}
-      <ButtonDiv>
-        <ListButton onClick={() => completeWorkout(index)}>Complete</ListButton>
-        <ListButton onClick={() => removeWorkout(index)}>x</ListButton>
-      </ButtonDiv>
-    </WorkoutInfoDiv>
+    <>
+      <Router history={history}>
+        <Route path="/exercise-list" component={ExerciseList} />
+      </Router>
+
+      <WorkoutInfoDiv style={{textDecoration: workout.isCompleted ? 'line-through' : ''}}>
+        <button onClick={() => history.push('/exercise-list')} >{workout.text}</button>
+        <ButtonDiv>
+          <ListButton onClick={() => completeWorkout(index)}>Complete</ListButton>
+          <ListButton onClick={() => removeWorkout(index)}>x</ListButton>
+        </ButtonDiv>
+      </WorkoutInfoDiv>
+
+    </>
   );
 }
 

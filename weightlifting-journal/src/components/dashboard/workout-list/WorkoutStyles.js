@@ -36,7 +36,7 @@ export const ButtonDiv = styled.div`
     width: 48%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 3px;
+    margin: 3px 0;
 `;
 
 export const InputDiv = styled.input`

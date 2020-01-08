@@ -3,7 +3,7 @@ import { WorkoutInfoDiv, WorkoutListDiv, WorkoutDiv, ButtonDiv} from "./WorkoutS
 
 const Workout = ({workout, index, completeWorkout, removeWorkout }) => {
   return(
-    <WorkoutInfoDiv>
+    <WorkoutInfoDiv style={{textDecoration: workout.isCompleted ? 'line-through' : ''}}>
         {workout.text}
       <ButtonDiv>
         <button onClick={() => completeWorkout(index)}>Complete</button>

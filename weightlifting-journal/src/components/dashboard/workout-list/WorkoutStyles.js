@@ -14,7 +14,6 @@ export const WorkoutInfoDiv = styled.div`
     justify-content: space-between;
     align-items: center;
     margin: 10px;
-
 `;
 
 export const WorkoutDiv = styled.div`
@@ -27,7 +26,7 @@ export const WorkoutDiv = styled.div`
     font-size: 12px;
     margin-bottom: 6px;
     border-radius: 3px;
-
+    font-size: 1.5rem;
 `;
 
 export const ButtonDiv = styled.div`
@@ -35,6 +34,7 @@ export const ButtonDiv = styled.div`
     margin: 0;
     text-decoration: none;
     cursor: pointer;
+    width: 48%;
 `;
 
 export const InputDiv = styled.div`
@@ -44,5 +44,4 @@ export const InputDiv = styled.div`
     box-shadow: none;
     padding: 1rem;
     height: 2.25em;
-    
 `;

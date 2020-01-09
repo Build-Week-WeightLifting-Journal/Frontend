@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import "./App.css"
 import WorkoutList from "./components/dashboard/workout-list/WorkoutList";
+import Header from "./components/public-api/Header";
 import ExerciseList from "./components/dashboard/workout-list/exercise-list/ExerciseList";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrash, faCheck, faEdit } from '@fortawesome/free-solid-svg-icons';
@@ -36,11 +37,16 @@ function App() {
         <Route>
           <WorkoutList />
         </Route>
+    
         <Route>
           <ExerciseList />
         </Route>
         <Route path="*" component={() => "404 NOT FOUND"} />
       </Switch>
+
+      <main>
+          <Header />
+        </main>
     </div>
   );
 }

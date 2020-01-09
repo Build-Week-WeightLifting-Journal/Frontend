@@ -1,9 +1,11 @@
 import React, { useState} from 'react';
 import history from "./history.js";
-import { Router, Route } from "react-router-dom";
+import { Router, Route, Link, Switch} from "react-router-dom";
 import { WorkoutInfoDiv, WorkoutListDiv, WorkoutDiv, ButtonDiv, ListButton, InputDiv} from "./WorkoutStyles";
 import ExerciseList from "./exercise-list/ExerciseList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+/* adding a public API here to meet my MVP - AJ */
+import CharacterList from "../../public-api/CharacterList";
 
 
 const Workout = ({workout, index, completeWorkout, removeWorkout, editWorkout }) => {
@@ -89,7 +91,7 @@ const WorkoutList = () => {
     };
 
     const editWorkout = (text, key) => {
-      
+
       const newWorkouts = [...workouts];
       newWorkouts.map(item=>{      
         if(item.key===key){

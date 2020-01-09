@@ -89,11 +89,12 @@ const WorkoutList = () => {
     };
 
     const editWorkout = (text, key) => {
+      
       const newWorkouts = [...workouts];
       newWorkouts.map(item=>{      
         if(item.key===key){
           console.log(item.key +""+key)
-          item.text= text;
+          item.text = text;
         }
       })
       this.setState({
@@ -101,7 +102,6 @@ const WorkoutList = () => {
       }) 
       setWorkouts(newWorkouts);
     };
-
 
     return(
       <WorkoutListDiv>

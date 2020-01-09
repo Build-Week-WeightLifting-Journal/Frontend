@@ -17,7 +17,8 @@ function Login(props)  {
 
     function login(e) {
         e.preventDefault();
-        axiosWithAuth()
+        axios
+        // change axios with auth to axios | removed cors proxy https://cors-anywhere.herokuapp.com/
             .post(`https://cors-anywhere.herokuapp.com/https://weightlifting-journal15.herokuapp.com/api/auth/login`, creds)
             .then(res => {
                 console.log(`login response`, res);

@@ -11,7 +11,7 @@ export const WorkoutInfoDiv = styled.div`
     border-radius: 4px;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     margin-bottom: 10px;
 `;

@@ -8,9 +8,10 @@ const WrapperDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 40px;
   margin: 10px;
-  width: 400px;
-  background-color: rgb(0, 191, 255, 0.3);
+  width: auto;
+  background-color: #03DAC5;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 `;
@@ -21,13 +22,6 @@ const WrapperSec = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-`;
-
-const WrapperForm = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  margin: 10px;
 `;
 
 
@@ -44,20 +38,15 @@ export default function CharacterList() {
       )
       .then(response => {
         console.log("original", response.data)
-
-        const users = response.data.map(
-          user => 
-            console.log(user)
-        );
-        setData(users);
+        setData(response.data);
       });
   }, []);
 
   return (
-    <div>
-        {Object.entries(data).map(userInfo => {
+    <WrapperSec>
+        {data.map(userInfo => {
           return (
-            <div
+            <WrapperDiv
               key= {userInfo.id}
             >
               <h4>
@@ -67,9 +56,9 @@ export default function CharacterList() {
               <p>
                 email: {userInfo.email}
               </p>
-            </div>
+            </WrapperDiv>
           );
         })}
-    </div>
+    </WrapperSec>
   );
 }
